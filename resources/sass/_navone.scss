@@ -1,0 +1,100 @@
+.navtwo {
+    background-color: white !important;
+    .mywith {
+        width: 45vw;
+        form {
+            width :100%;
+        }
+    }
+
+
+    @media screen and (max-width: 600px) {
+        .meme {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            // height: 75px;
+            width: 200px;
+            padding: 5px 0;
+            // height: 80px;
+        }
+
+        .mywith {
+            width: 100%;
+        }
+        // margin-top: 20px;
+    }
+}
+
+.navthree {
+    z-index: 99999 !important;
+    // position: fixed;
+    // top: 40px;
+    width: 100vw;
+    height: 70px;
+    background-color: white !important;
+
+    .dropdown-divider {
+        // border-top: 1px solid #4c4c4c !important;
+    }
+
+    .dropdown-menu {
+        @media screen and (max-width: 600px) {
+            // border: 1px solid #4c4c4c;
+            margin-left: 10px;
+        }
+
+    }
+
+    .navbar {
+        // height: 100%;
+        z-index: 99999 !important;
+        padding: 0;
+        // background-color: white !important;
+        .navbar-brand a {
+            padding: 0;
+        }
+    }
+
+    .active {
+        color: #ffffff !important;
+        background-color: #056ef7 !important;
+    }
+
+    li {
+        .home {
+            // width: 80px;
+            i {
+                font-size: 2em;
+            }
+        }
+        a {
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+            height: 100%;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: rgb(0, 0, 0) !important;
+            font-size: 0.9em !important;
+            font-weight: bold !important;
+            padding: 5px 15px !important;
+
+            &:hover {
+                color: #056ef7 !important;
+                // background-color: #056ef7 !important;
+            }
+
+            @media screen and (max-width: 600px) {
+                display: block !important;
+            }
+        }
+    }
+
+    .dropdown-menu, .navbar-collapse {
+        background-color: white !important;
+    }
+}

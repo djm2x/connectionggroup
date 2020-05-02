@@ -1,0 +1,73 @@
+<div class="flex-container">
+  <!-- {{myForm.value | json}} -->
+  <mat-card class="flex-item mat-elevation-z8">
+
+    <!-- <mat-card-header>
+      <mat-card-title>title</mat-card-title>
+      <mat-card-subtitle>subtitle</mat-card-subtitle>
+    </mat-card-header> -->
+    <form [formGroup]="myForm" (ngSubmit)="submit(myForm)">
+      <mat-card-content>
+        <!-- <br> -->
+        <div class="logo">
+          <img src="assets/logo.png" alt="marit logo" width="210">
+        </div>
+        <!-- <mat-divider></mat-divider> -->
+        <!-- <p class="systeme">TRAVEL & TOURISME</p> -->
+        <mat-divider [inset]="true" class="mb-4 mt-3"></mat-divider>
+        <!-- <br>
+        <h5 class="mt-3">BIENVENUE ! VEUILLEZ VOUS IDENTIFIER.</h5>
+        <br> -->
+        <div class="example-container mt-2 text-center">
+
+          <mat-form-field>
+            <mat-label>Email
+            </mat-label>
+            <input matInput formControlName="email" placeholder="Email address">
+            <mat-error *ngIf="myForm.get('email').invalid">Email incorrect</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>mot de pass</mat-label>
+            <input matInput formControlName="password" placeholder="Mot de passe" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
+                              'visibility'}}</mat-icon>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button color="primary" type="button" type="submit">Login</button>
+          <br>
+          <button [routerLink]="['/auth/create']" mat-raised-button color="accent" type="button">Créer un compte</button>
+
+        </div>
+      </mat-card-content>
+    </form>
+    <div class="row justify-content-center">
+      <!-- {{myForm.status | json}} -->
+      <!-- {{msg}} -->
+    </div>
+    <mat-card-actions>
+      <!-- <button mat-raised-button (click)="isNew = !isNew">change state</button> -->
+    </mat-card-actions>
+  </mat-card>
+<!--
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 450px !important;">
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> EMAIL </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef> MOTPASS </th>
+      <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="profil">
+      <th mat-header-cell *matHeaderCellDef> PROFIL </th>
+      <td mat-cell *matCellDef="let element"> {{element.profil}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table> -->
+</div>

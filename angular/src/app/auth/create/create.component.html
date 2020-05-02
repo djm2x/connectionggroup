@@ -1,0 +1,88 @@
+<div class="container" style="height: 100vh;">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <mat-card class="col-md-6 mat-elevation-z8">
+
+      <form [formGroup]="myForm" (ngSubmit)="submit(myForm.value)">
+        <mat-card-content>
+          <div class="logo">
+            <img src="assets/logo.png" alt="marit logo" width="210">
+          </div>
+          <!-- <mat-divider></mat-divider> -->
+          <!-- <p class="systeme">TRAVEL & TOURISME</p> -->
+          <mat-divider [inset]="true" class="mb-4 mt-3"></mat-divider>
+
+          <div class="row mtb-2 text-center">
+
+            <!-- <mat-form-field appearance="fill">
+                        <mat-label>Prénom</mat-label>
+                        <input matInput formControlName="firstname">
+                    </mat-form-field> -->
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Nom</mat-label>
+              <input matInput formControlName="nom" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Prenom</mat-label>
+              <input matInput formControlName="prenom" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Tel</mat-label>
+              <input matInput formControlName="phone" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Adresse</mat-label>
+              <input matInput formControlName="adresse" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Cin</mat-label>
+              <input matInput formControlName="cin" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Organisation</mat-label>
+              <input matInput formControlName="organisation" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Date</mat-label>
+              <input matInput readonly [matDatepicker]="picker" formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Mot de pass</mat-label>
+              <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="col-md-6">
+              <mat-label>Region</mat-label>
+              <mat-select formControlName="idRegion">
+                <mat-option *ngFor="let e of regions | async" [value]="e.id">{{ e.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="col-md-12">
+              <button class="mb-2 w-100" mat-raised-button color="accent" type="submit">Ajouter</button>
+              <button class="mb-2 w-100" [routerLink]="['/auth/login']" mat-raised-button color="primary"
+                type="button">Se connecter</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+</div>

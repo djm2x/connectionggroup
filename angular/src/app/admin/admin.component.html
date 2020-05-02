@@ -1,0 +1,134 @@
+<!-- <app-header [userName]="currentUser"></app-header> -->
+<!-- <app-menu></app-menu>
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer> -->
+
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <p>Connecting group</p>
+    <!-- <button class="ml-3" mat-raised-button (click)="toWebSite()">Vers le site</button> -->
+
+    <a class="ml-3 mat-raised-button mat-button-base" [href]="url" target="_blank" rel="noopener noreferrer">Vers le site</a>
+    <span class="example-spacer"></span>
+
+    <!-- <p>&nbsp;||&nbsp;organisme : {{session.getUser.organisme.label}}</p> -->
+    <button mat-raised-button color="warn" [matMenuTriggerFor]="beforeMenu">
+      <!-- {{session.user.nomComplete}}  -->
+      <!-- (<b>{{session.user.role.nom}} </b>) -->
+      (<b> {{session.user.nom}} </b>)
+
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <!-- <button mat-menu-item [routerLink]="['/admin/compte']">Compte</button> -->
+      <button mat-menu-item (click)="disconnect()">Déconnecter</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <p>Système de suivi des recommandations</p>
+  <span class="example-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="beforeMenu">{{session.getUser.nom}}</button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/admin/compte']">Compte</button>
+    <button mat-menu-item (click)="disconnect()">Déconnecter</button>
+  </mat-menu> -->
+
+<mat-sidenav-container #sidenav class="example-sidenav-container" style="height: 100%;z-index: 9;">
+  <mat-sidenav #snav [mode]="(!mobileQuery.matches) ? 'side' : 'over'" [opened]="opened && !mobileQuery.matches"
+    [fixedInViewport]="true" fixedTopGap="50">
+    <mat-nav-list class="list" style="width: 220px; padding: 0;">
+      <div class="logo">
+        <img src="../assets/logo.png" alt="marit logo" width="210">
+        <!-- <h1 style="font-weight: bold;">NEW APP</h1> -->
+      </div>
+      <mat-divider></mat-divider>
+
+      <mat-list-item [routerLink]="['/admin/article']" routerLinkActive="router-link-active">
+        <mat-icon>payment</mat-icon>&nbsp;<span>Articles</span>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+      <!-- <mat-list-item [routerLink]="['/admin/section']" routerLinkActive="router-link-active">
+        <mat-icon>payment</mat-icon>&nbsp;<span>Section</span>
+        <mat-divider></mat-divider>
+      </mat-list-item> -->
+
+      <!-- <mat-list-item [routerLink]="['/admin/activite']" routerLinkActive="router-link-active">
+        <mat-icon>payment</mat-icon>&nbsp;<span>Activite</span>
+        <mat-divider></mat-divider>
+      </mat-list-item> -->
+
+      <mat-list-item [routerLink]="['/admin/blog']" routerLinkActive="router-link-active">
+        <mat-icon>payment</mat-icon>&nbsp;<span>Blogs</span>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="['/admin/galerie']" routerLinkActive="router-link-active">
+        <mat-icon>payment</mat-icon>&nbsp;<span>Galerie</span>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="['/admin/contact']" routerLinkActive="router-link-active">
+        <mat-icon>payment</mat-icon>&nbsp;<span>Contact</span>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+
+      <mat-accordion>
+
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Paramétrage
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list-item [routerLink]="['/admin/region']" routerLinkActive="router-link-active">
+            <mat-icon>payment</mat-icon>&nbsp;<span>Region</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item [routerLink]="['/admin/user']" routerLinkActive="router-link-active">
+            <mat-icon>redeem</mat-icon>&nbsp;<span>Utilisateurs</span>
+          </mat-list-item>
+          <!-- <mat-list-item *ngIf="false" [routerLink]="['/admin/role']" routerLinkActive="router-link-active">
+            <mat-icon>control_point_duplicate</mat-icon>&nbsp;<span>Role</span>
+          </mat-list-item> -->
+          <mat-divider></mat-divider>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+
+    <!-- <div style="margin: 65px auto 15px;" class="mybreadcrumb">
+        <div *ngFor="let s of patchRoute" class="items">
+          <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
+        </div>
+      </div> -->
+    <main style="margin: 65px 0 0 5px;">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- <footer>
+        <mat-toolbar class="mt-2 text" color="primary">
+          <mat-toolbar-row style="height: 70px">
+            <span style="margin-left: auto; margin-right: auto;"> © {{ d | date:"dd/MMMM/yyyy" }} - Yaasin MOURABIT</span>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

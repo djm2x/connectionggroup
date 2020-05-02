@@ -1,0 +1,38 @@
+body {
+    #btn {
+        position: fixed;
+        z-index: 5;
+        right: 5px;
+        top: 90vh;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        padding: 10px;
+        background-color: $primary;
+        box-shadow: 1px 2px 10px gray;
+        cursor: pointer;
+    }
+    .title {
+        height: 75px;
+        background-color: #ebebeb;
+    }
+    .main {
+        margin-top: 70px;
+
+        // @media screen and (max-width: 992px) {
+        //     margin-top: 95px;
+        // }
+
+        // @media screen and (max-width: 600px) {
+        //     margin-top: 195px;
+        // }
+    }
+
+    .progress {
+        height: 5px !important;
+        div {
+            width: 75px;
+            height: 5px !important;
+        }
+    }
+}

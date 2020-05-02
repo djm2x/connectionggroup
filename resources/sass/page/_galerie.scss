@@ -1,0 +1,30 @@
+.galerie {
+    @mixin factore {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        h1 {
+            font-weight: bold;
+            font-size: 3em;
+        }
+        mat-icon {
+            font-size: 3em;
+        }
+    }
+
+    .wallpaper {
+        @include factore();
+        // background-image: url(../../../assets/2.jpg);
+        height: 20vh;
+    }
+
+    .text {
+        // font-size: 1.1em !important;
+    }
+}
