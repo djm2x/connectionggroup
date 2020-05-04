@@ -145,13 +145,13 @@
         data.forEach((e, i) => {
             html +=
                 `<div class="d-flex align-items-center w-100 p-1">
-                    <div class="col-md-3 date d-flex flex-column justify-content-between align-items-center">
+                    <div class="col-3 col-md-3 date d-flex flex-column justify-content-between align-items-center">
                         <p class="h3 m-0 font-weight-bold" style="z-index: 3;">${new Date(e.date).getDate()}</p>
                         <p class="m-0 text-muted" style="z-index: 3; font-size:.8em; white-space: nowrap;">
                             ${new Date(e.date).toLocaleString('default', { month: 'long' })}, ${new Date(e.date).getFullYear()}
                         </p>
                     </div>
-                    <div class="col-md-9 pr-0">
+                    <div class="col-9 col-md-9 pr-0">
                         <a class="init-ancre" href="/blogs/${type}/${e.id}""><p class="m-0">${e.title.substring(0, 60)}..</p></a>
                     </div>
                 </div>
