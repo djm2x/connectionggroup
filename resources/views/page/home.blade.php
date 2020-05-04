@@ -11,7 +11,7 @@
         {{-- <h1>{{$model->title}}</h1> --}}
 
         <section>
-            {!! substr($model->description, 0, 233) !!}...
+            {!! substr($model->description, 0, 500) !!}...
         </section>
 
 
