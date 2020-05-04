@@ -5,7 +5,7 @@
 
 
 @section('title')
-    {{-- <h1>{{$model->title}}</h1> --}}
+Sections intrenationales
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
                 class="card-img-top" alt="..." style="width: 20vw">
             </div> --}}
             <div class="col-md-12">
-                <p class="text-uppercase">À PROPOS</p>
+                {{-- <p class="text-uppercase">À PROPOS</p> --}}
                 @foreach ($list as $e)
                 <div class="d-flex mb-3">
                     <div class="mr-2" >

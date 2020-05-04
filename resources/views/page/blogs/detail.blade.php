@@ -5,7 +5,7 @@
 
 
 @section('title')
-    {{-- <h1>{{$model->title}}</h1> --}}
+{{ $model->title }}
 @stop
 
 @section('content')
@@ -17,10 +17,10 @@
                 class="card-img-top" alt="..." style="width: 20vw">
             </div> --}}
             <div class="col-md-12">
-                <p class="text-uppercase">{{$type}}</p>
+                {{-- <p class="text-uppercase">{{$type}}</p> --}}
 
 
-                <h2>{{ $model->title }}</h2>
+                {{-- <h2>{{ $model->title }}</h2> --}}
                 <p style="font-style: italic; font-size: .9em" class="text-muted mb-5">Le {{date('d-m-Y', strtotime($model->date))}}</p>
                 {!! $model->description !!}
             </div>

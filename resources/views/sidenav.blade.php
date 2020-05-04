@@ -26,19 +26,22 @@
 
 
 <section class="sidenav">
+    @if (request()->is('/'))
     <section class="login bg-light mb-2 mt-2 p-2 d-flex justify-content-between align-items-center"
-     style="background: #f3f3f3  !important; ">
-        <p class="h5 m-0">Espace Membre</p>
-        {{-- <button class="btn btn-primary">S'Authentifier</button> --}}
-        <a class="btn btn-primary" href="/auth/login">S'Authentifier</a>
-    </section>
+    style="background: #f3f3f3  !important; ">
+       <p class="h5 m-0">Espace Membre</p>
+       {{-- <button class="btn btn-primary">S'Authentifier</button> --}}
+       <a class="btn btn-primary" href="/auth/login">S'Authentifier</a>
+   </section>
 
-    <section class="sigin bg-light mb-2 mt-2 p-2  d-flex justify-content-between align-items-center"
-     style="background: #f3f3f3  !important; ">
-        <p class="h5 m-0">Devenir Membre</p>
-        {{-- <button class="btn btn-primary">S'Inscrire</button> --}}
-        <a class="btn btn-primary" href="/auth/create">S'Inscrire</a>
-    </section>
+   <section class="sigin bg-light mb-2 mt-2 p-2  d-flex justify-content-between align-items-center"
+    style="background: #f3f3f3  !important; ">
+       <p class="h5 m-0">Devenir Membre</p>
+       {{-- <button class="btn btn-primary">S'Inscrire</button> --}}
+       <a class="btn btn-primary" href="/auth/create">S'Inscrire</a>
+   </section>
+    @endif
+
 
     <section class="news pt-2 pb-2">
         <div class="card w-100" style="border-radius: 0">

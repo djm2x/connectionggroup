@@ -1,9 +1,14 @@
 @extends('master')
 
+
+@section('title')
+{{ $model->title }}
+@stop
+
 @section('content')
 <div class="hommee">
     <div class="mt-2">
-        <h1>{{$model->title}}</h1>
+        {{-- <h1>{{$model->title}}</h1> --}}
 
         <section>
             {!! substr($model->description, 0, 233) !!}...

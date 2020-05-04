@@ -29,6 +29,7 @@
         <section class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-8">
+                    <h1 class="mt-4 text-capitalize">@yield('title')</h1>
                     @yield('content')
                 </div>
 

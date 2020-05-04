@@ -5,7 +5,7 @@
 
 
 @section('title')
-    {{-- <h1>{{$model->title}}</h1> --}}
+{{ $model->title }}
 @stop
 
 @section('content')
@@ -17,8 +17,8 @@
                 class="card-img-top" alt="..." style="width: 20vw">
             </div> --}}
             <div class="col-md-12">
-                <p class="text-uppercase">À PROPOS</p>
-                <h2>{{ $model->title }}</h2>
+                {{-- <p class="text-uppercase">À PROPOS</p>
+                <h2>{{ $model->title }}</h2> --}}
                 {{-- {{explode(";", $model->description)}} --}}
                 {!! $model->description !!}
             </div>

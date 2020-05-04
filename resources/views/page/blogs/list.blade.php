@@ -1,7 +1,9 @@
 @extends('master')
 
 
-
+@section('title')
+{{$type}}
+@stop
 @section('content')
     {{-- {{$list}} --}}
 

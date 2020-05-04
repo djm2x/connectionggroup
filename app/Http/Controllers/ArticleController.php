@@ -40,10 +40,10 @@ class ArticleController extends SuperController
 
 
 
-        // dd($article);
 
         $model = $q->first();
 
+        // dd($model);
         if ($model == null) {
             return view('notfound');
         }
