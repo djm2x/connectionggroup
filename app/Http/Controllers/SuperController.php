@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SuperController extends Controller
 {
-    protected  $_context;
+    protected $_context;
 
     public function __construct($context)
     {
@@ -120,10 +120,6 @@ class SuperController extends Controller
         }
         return $res->get();
     }
-
-
-
-
 
     public function store(Request $request)
     {
