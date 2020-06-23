@@ -56,12 +56,12 @@ export class CreateComponent implements OnInit {
   }
 
   submit(o: User) {
-    o.date = this.uow.valideDate(o.date);
-    this.uow.accounts.register(o).subscribe((r: any) => {
-      // this.session.doSignIn(r.user, r.token, r.idRole);
+    // o.date = this.uow.valideDate(o.date);
+    // this.uow.accounts.register(o).subscribe((r: any) => {
+    //   // this.session.doSignIn(r.user, r.token, r.idRole);
 
-      this.router.navigate(['/auth/login']);
-    });
+    //   this.router.navigate(['/auth/login']);
+    // });
   }
 
   resetForm() {

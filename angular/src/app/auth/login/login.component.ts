@@ -6,6 +6,7 @@ import { SessionService } from 'src/app/shared';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { User } from 'src/app/models/models';
 import { SnackBarService } from 'src/app/loader/snack-bar.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -33,8 +34,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     // test
-    this.o.email = 'admin@gmail.com';
-    this.o.password = '123';
+    if (!environment.production) {
+      this.o.email = 'admin@gmail.com';
+      this.o.password = '123@pup';
+    }
     this.createForm();
 
     // this.uow.accounts.sanctumCsrf().subscribe(r => {

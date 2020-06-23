@@ -6,7 +6,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 
-const port = '8000';
+const port = '8001';
 const host = 'http://localhost';
 
 const apiUrl = `${host}:${port}/api`;

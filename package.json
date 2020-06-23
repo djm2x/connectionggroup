@@ -12,7 +12,7 @@
         "f": "cd angular && ng serve --port 4202",
         "m0": "composer dumpautoload && php artisan migrate:refresh --seed && npm run b",
         "m": "php artisan migrate:refresh --seed && npm run b",
-        "b": " php artisan serve --host=localhost --port=8000",
+        "b": " php artisan serve --host=localhost --port=8001",
         "f-p": "cd angular && ng build --prod",
         "copy": "node ./moveFile.js",
         "p": "npm run f-p && npm run copy",
