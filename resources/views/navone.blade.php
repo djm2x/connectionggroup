@@ -50,6 +50,27 @@
                         <a class="{{ request()->is('galerie') ? 'nav-link active' : 'nav-link' }}" href="{{ route('galerie') }}">Galerie</a>
                     </li>
 
+                    {{-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Formation
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="{{ request()->is('blogs/formationAgadir') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationAgadir') }}">Formation région Agadir</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/formationCasablanca') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationCasablanca') }}">Formation région Casablanca</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/formationFes') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationFes') }}">Formation région Fès</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/formationMarrakech') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationMarrakech') }}">Formation région Marrakech</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/formationMeknes') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationMeknes') }}">Formation région Meknès</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/formationRabat') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationRabat') }}">Formation région Rabat-Kénitra</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/formationTanger') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationTanger') }}">Formation région Tanger</a>
+                        </div>
+                    </li> --}}
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Media
@@ -60,6 +81,10 @@
                             <a class="{{ request()->is('blogs/communiques') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/communiques') }}">Communiqués</a>
                             <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/interviews') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/interviews') }}">Interviews</a>
+                            {{-- <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/conferenceNationale') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/conferenceNationale') }}">Conférence nationale</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/conferenceRegionale') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/conferenceRegionale') }}">Conférence régionale</a> --}}
                         </div>
                     </li>
 

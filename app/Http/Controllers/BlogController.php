@@ -11,21 +11,21 @@ class BlogController extends SuperController
     private $types = [
         "activites",
         "agenda",
-        "Communiqués",
-        "Conférence nationale",
-        "Conférence régionale",
-        "Formation région Agadir",
-        "Formation région Casablanca",
-        "Formation région Fès",
-        "Formation région Marrakech",
-        "Formation région Meknès",
-        "Formation région Rabat-Kénitra",
-        "Formation région Tanger",
-        "Interviews",
+        "communiques",
+        // "conferenceNationale",
+        // "conferenceRegionale",
+        // "formationAgadir",
+        // "formationCasablanca",
+        // "formationFes",
+        // "formationMarrakech",
+        // "formationMeknes",
+        // "formationRabat",
+        // "formationTanger",
+        "interviews",
         "news",
-        "Press",
-        "Sections intrenationales",
-        "Sections nationales"
+        "press",
+        "intrenationales",
+        "nationales"
     ];
 
     public function __construct(blog $model)
@@ -80,6 +80,10 @@ class BlogController extends SuperController
             $q->orWhere('type', 'LIKE', "%Activités%");
         }
 
+        if ($type == 'communiques') {
+            $q->orWhere('type', 'LIKE', "%communiqués%");
+        }
+
         // filter blogs by years
         if ($year != 0) {
             $q->whereYear('date', '=' ,$year);
@@ -122,9 +126,16 @@ class BlogController extends SuperController
 
         $count = $q->count();
 
+        $q2 = clone($q);
+        $years = $q2->select(DB::raw($rawSql))->distinct('year')->orderBy('date', 'desc')->get();
+
         $list = $q->orderBy('date', 'desc')->skip(0)->take(6)->get();
 
-        $years = $q->select(DB::raw($rawSql))->get();
+
+
+        // dd($years);
+
+        // $years = array_unique ($years);
 
         return view("page/blogs/list", compact('list', 'type', 'years', 'count'));
     }

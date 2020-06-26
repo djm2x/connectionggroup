@@ -27,16 +27,13 @@ export class UploadImageComponent implements OnInit {
 
   ngOnInit() {
     this.propertyOfParent.subscribe((r: string) => {
-      if (!r) {
-        return;
-      }
-      const l = r.split(';');
+      const l = r ? r.split(';') : [];
 
       l.pop();
 
       this.listOfNames = l;
       this.listToDelete = [];
-      console.log(l);
+      // console.log(l);
 
       if (!this.multiple) {
         const imageUrl = l.length !== 0 ? l[0] : null;
@@ -71,6 +68,7 @@ export class UploadImageComponent implements OnInit {
   }
 
   upload(files: FileList) {
+    console.log(files)
     if (this.multiple) {
       const s = files;
       // let file = null;
@@ -167,6 +165,7 @@ export class UploadImageComponent implements OnInit {
     return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
   }
 
+
   removeFromImages(name: string) {
 
     const i0 = this.Images.findIndex(e => name.includes(e.name));
@@ -197,6 +196,7 @@ export class UploadImageComponent implements OnInit {
     }
   }
 
+  // remove from listOfNames & files , also add deleted files to listToDelete
   remove(name: string) {
 
     const i = this.listOfNames.findIndex(e => name.includes(e));
@@ -230,6 +230,7 @@ export class UploadImageComponent implements OnInit {
     o.click();
   }
 
+  // collect & concatenate the name of files, and send them to caller component
   sendPropertyOfParent() {
     let propertyOfParent = '';
 
@@ -244,24 +245,31 @@ export class UploadImageComponent implements OnInit {
 
     const formData = new FormData();
 
-    this.files.forEach(e => {
-
-      const name = this.setFileName(e);
-
-      formData.append('file', e, name);
-      console.log(e)
+    this.files.forEach((e, i) => {
+      formData.append(`file${i}`, e, this.setFileName(e));
     });
 
+    formData.append('length', `${this.files.length}`);
 
-    if (formData) {
-      if (value.id && !this.folderToSaveInServer.includes('_')) {
-        this.folderToSaveInServer = `${this.folderToSaveInServer}_${value.id}`;
-      }
-      const r = await this.filesService.uploadFiles(formData, this.folderToSaveInServer).toPromise();
+    if (value.id && !this.folderToSaveInServer.includes('_')) {
+      this.folderToSaveInServer = `${this.folderToSaveInServer}_${value.id}`;
+    }
+
+    if (this.listToDelete.length !== 0) {
       const r2 = await this.filesService.deleteFiles(this.listToDelete, this.folderToSaveInServer).toPromise();
 
-      console.log(r, r2)
+      console.log('Deleted files =>');
+      console.log(r2);
     }
+
+    if (formData && this.files.length !== 0) {
+      const r = await this.filesService.uploadFiles(formData, this.folderToSaveInServer).toPromise();
+
+      console.log('Added files =>');
+      console.log(r);
+    }
+
+
 
     // if (action.name && action.name === 'delete') {
     //   const r2 = await this.filesService.deleteFiles([action.file], this.folderToSaveInServer).toPromise();

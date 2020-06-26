@@ -2,7 +2,7 @@
 
 
 @section('title')
-{{$type}}
+{{ preg_replace('/(?<!\ )[A-Z]/', ' $0', $type)}}
 @stop
 @section('content')
     {{-- {{$list}} --}}
