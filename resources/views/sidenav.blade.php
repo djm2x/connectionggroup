@@ -46,7 +46,7 @@
     <section class="news pt-2 pb-2">
         <div class="card w-100" style="border-radius: 0">
             <div class="card-body">
-                <h5 class="card-title">News</h5>
+                <h5 class="card-title"><a class="text-dark" href="/blogs/news">News</a></h5>
                 <h6 class="card-subtitle mb-2" style="width: 30%">
                     <hr class="m-0">
                     <hr class="m-0">
@@ -62,7 +62,7 @@
     <section class="agenda pt-2 pb-2">
         <div class="card w-100" style="border-radius: 0">
             <div class="card-body">
-            <h5 class="card-title">Agenda</h5>
+            <h5 class="card-title"><a class="text-dark" href="/blogs/agenda">Agenda</a></h5>
                 <h6 class="card-subtitle mb-2" style="width: 30%">
                     <hr class="m-0">
                     <hr class="m-0">

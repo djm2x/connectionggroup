@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "---": "---",
-        "f": "cd angular && ng serve --port 4202",
+        "f": "cd angular && ng serve --port 4205",
         "m0": "composer dumpautoload && php artisan migrate:refresh --seed && npm run b",
         "m": "php artisan migrate:refresh --seed && npm run b",
         "b": " php artisan serve --host=localhost --port=8001",

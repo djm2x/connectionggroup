@@ -9,14 +9,23 @@ use Illuminate\Support\Facades\DB;
 class BlogController extends SuperController
 {
     private $types = [
-        'press',
-        'activites',
-        'communiques',
-        'nationales',
-        'intrenationales',
-        'interviews',
-        'news',
-        'agenda'
+        "activites",
+        "agenda",
+        "Communiqués",
+        "Conférence nationale",
+        "Conférence régionale",
+        "Formation région Agadir",
+        "Formation région Casablanca",
+        "Formation région Fès",
+        "Formation région Marrakech",
+        "Formation région Meknès",
+        "Formation région Rabat-Kénitra",
+        "Formation région Tanger",
+        "Interviews",
+        "news",
+        "Press",
+        "Sections intrenationales",
+        "Sections nationales"
     ];
 
     public function __construct(blog $model)
@@ -68,7 +77,7 @@ class BlogController extends SuperController
         $q = $this->_context->where('type', 'LIKE', "%{$type}%");
 
         if ($type == 'activites') {
-            $q->orWhere('type', 'LIKE', "%activités%");
+            $q->orWhere('type', 'LIKE', "%Activités%");
         }
 
         // filter blogs by years

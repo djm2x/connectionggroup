@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { UowService } from 'src/app/services/uow.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -25,16 +26,19 @@ export class UpdateComponent implements OnInit {
 
   eventSubmitFromParent = new Subject();
 
-  types = ['Press', 'Activités', 'Communiqués', 'Sections nationales', 'Sections intrenationales', 'Interviews', 'News', 'Agenda'];
+  types = this.http.get<string[]>('assets/typeActivite.json');
 
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
-    , private fb: FormBuilder, private uow: UowService
-    , private session: SessionService) { }
+    , private fb: FormBuilder, private uow: UowService, private session: SessionService
+    , private http: HttpClient) { }
 
   ngOnInit() {
     this.o = this.data.model;
     this.title = this.data.title;
+    this.o.date = new Date(this.o.date)
+    console.log(this.o)
     this.createForm();
+
 
     this.imageFrom.subscribe(r => this.myForm.get('imageUrl').setValue(r));
 
@@ -48,6 +52,7 @@ export class UpdateComponent implements OnInit {
   }
 
   onOkClick(o: Blog): void {
+    o.date = this.uow.valideDate(o.date);
     if (o.id === 0) {
       o.id = null;
       this.uow.blogs.post(o).subscribe(r => {
