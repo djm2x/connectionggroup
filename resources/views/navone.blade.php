@@ -29,7 +29,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('article/organigramme') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('article/organigramme') }}">Organigramme</a>
                             <div class="dropdown-divider"></div>
-                            <a class="{{ request()->is('article/membres') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('article/membres') }}">	Membres du bureau</a>
+                            <a class="{{ request()->is('article/membres') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('article/membres') }}">Membres du bureau</a>
                             <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/nationales') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/nationales') }}">Sections nationales</a>
                             <div class="dropdown-divider"></div>
