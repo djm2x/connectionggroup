@@ -6,7 +6,7 @@
 
     .date::before {
         content: '';
-        background-image: url('images/dashed.png');
+        /* background-image: url('images/dashed.png'); */
         position: absolute;
         height: 100%;
         width: 100%;

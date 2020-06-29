@@ -2,7 +2,8 @@
 
 
 @section('title')
-{{ preg_replace('/(?<!\ )[A-Z]/', ' $0', $type)}}
+{{-- {{ preg_replace('/(?<!\ )[A-Z]/', ' $0', $title)}} --}}
+{{  $title}}
 @stop
 @section('content')
     {{-- {{$list}} --}}
@@ -72,6 +73,8 @@
             try {
                 const r = await axios.get(`/api/blogs/pageApi/${startIndex}/${pageSize}/${type}/${+get('#year').value}`);
                 const list = r.data.list;
+
+                // console.warn(r)
 
                 get('#count').innerHTML = r.data.count;
 
