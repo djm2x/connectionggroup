@@ -32,6 +32,7 @@
                         </div>
                         <div class="col-md-7">
                             <p style="font-size: 1.2em">{{$e->title}}</p>
+                            {{-- <p style="font-size: .9em">{{str_replace('&nbsp;',' ',substr(strip_tags($e->description),0,1000))}}</p> --}}
                         </div>
                     </div>
 
