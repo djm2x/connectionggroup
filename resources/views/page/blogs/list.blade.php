@@ -27,7 +27,7 @@
                 @foreach($list as $e)
                     <div class="row">
                         <div class="col-md-5">
-                            <img src="{{url($type .'/'.str_replace(';', '', $e->imageUrl))}}"
+                            <img src="{{url('blogs/'.str_replace(';', '', $e->imageUrl))}}"
                             onerror="this.onerror=null;this.src='/images/404.png';" class="w-100" style="height: 180px;">
                         </div>
                         <div class="col-md-7">

@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row d-flex justify-content-center p-2 mt-5">
             @foreach ($list as $e)
-                <div  class="col-md-6 col-sm-6 col-lg-3 mb-3 d-flex justify-content-center">
+                <div  class="col-md-6 col-sm-6 col-lg-4 mb-3 d-flex justify-content-center">
                     <div class="card m-1" style="width: 18rem;cursor: pointer;">
                         <hr class="m-0">
                         <hr class="m-0">
