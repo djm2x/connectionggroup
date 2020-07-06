@@ -17,6 +17,7 @@
         "copy": "node ./moveFile.js",
         "p": "npm run f-p && npm run copy",
         "init": "git init && git remote add origin https://github.com/djm2x/connectionggroup.git",
+        "cmt": "git add . && git commit -m \"commit\"",
         "push": "git add . && git commit -m \"commit\" && git push -u origin master",
         "git-login": "git config --global user.email",
         "log": "heroku logs --tail -a connectingroup"
