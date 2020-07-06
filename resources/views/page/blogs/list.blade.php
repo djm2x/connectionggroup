@@ -2,7 +2,8 @@
 
 
 @section('title')
-{{ preg_replace('/(?<!\ )[A-Z]/', ' $0', $type)}}
+{{-- {{ preg_replace('/(?<!\ )[A-Z]/', ' $0', $title)}} --}}
+{{  $title}}
 @stop
 @section('content')
     {{-- {{$list}} --}}
@@ -26,11 +27,12 @@
                 @foreach($list as $e)
                     <div class="row">
                         <div class="col-md-5">
-                            <img src="{{url($type .'/'.str_replace(';', '', $e->imageUrl))}}"
+                            <img src="{{url('blogs/'.str_replace(';', '', $e->imageUrl))}}"
                             onerror="this.onerror=null;this.src='/images/404.png';" class="w-100" style="height: 180px;">
                         </div>
                         <div class="col-md-7">
                             <p style="font-size: 1.2em">{{$e->title}}</p>
+                            {{-- <p style="font-size: .9em">{{str_replace('&nbsp;',' ',substr(strip_tags($e->description),0,1000))}}</p> --}}
                         </div>
                     </div>
 
@@ -72,6 +74,8 @@
             try {
                 const r = await axios.get(`/api/blogs/pageApi/${startIndex}/${pageSize}/${type}/${+get('#year').value}`);
                 const list = r.data.list;
+
+                // console.warn(r)
 
                 get('#count').innerHTML = r.data.count;
 

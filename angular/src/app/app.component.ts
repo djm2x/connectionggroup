@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from './theme.service';
+import { SplashScreenService } from './splash-screen.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { ThemeService } from './theme.service';
 export class AppComponent implements OnInit {
   title = 'Front';
 
-  constructor(public theme: ThemeService) { }
+  constructor(public theme: ThemeService, private splashScreenService: SplashScreenService) { }
 
   ngOnInit() {
 

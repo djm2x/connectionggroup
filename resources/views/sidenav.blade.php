@@ -6,7 +6,7 @@
 
     .date::before {
         content: '';
-        background-image: url('images/dashed.png');
+        /* background-image: url('images/dashed.png'); */
         position: absolute;
         height: 100%;
         width: 100%;
@@ -38,7 +38,7 @@
     style="background: #f3f3f3  !important; ">
        <p class="h5 m-0">Devenir Membre</p>
        {{-- <button class="btn btn-primary">S'Inscrire</button> --}}
-       <a class="btn btn-primary" href="/auth/create">S'Inscrire</a>
+       <a class="btn btn-primary" href="/auth/login">S'Inscrire</a>
    </section>
     @endif
 
