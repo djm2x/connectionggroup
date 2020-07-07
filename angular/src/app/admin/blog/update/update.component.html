@@ -24,15 +24,20 @@
         <mat-form-field appearance="fill" class="col-md-6">
           <mat-label>Type</mat-label>
           <mat-select formControlName="type">
+
             <mat-option *ngFor="let e of types | async" [value]="e">{{ e }}</mat-option>
           </mat-select>
         </mat-form-field>
 
-        <app-upload-image class="col-md-12" nameBtn="Image" [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="imageTo"
+        <!-- <app-upload-image class="col-md-12" nameBtn="Image" [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="imageTo"
           [eventSubmitToParent]="imageFrom" [eventSubmitFromParent]="eventSubmitFromParent">
+        </app-upload-image> -->
 
-
+        <app-upload-image class="col-md-12" nameBtn="Image" multiple="true" [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="imageTo"
+          [eventSubmitToParent]="imageFrom" [eventSubmitFromParent]="eventSubmitFromParent">
         </app-upload-image>
+
+
         <angular-editor class="col-md-12" formControlName="description" [config]="config"></angular-editor>
 
 

@@ -24,8 +24,8 @@
         <div class="p-2">
             <h5>NOS PARTENAIRES :</h5>
             <div class="d-flex flex-wrap">
-                @for ($i = 1; $i <= 4; $i++)
-                <img style="width:100px" class="p-1" src="images/p{{$i}}.png" alt="">
+                @for ($i = 1; $i <= 5; $i++)
+            <img style="width: {{$i != 5 ? '100px' : '200px'}}" class="p-1" src="images/p{{$i}}.png" alt="">
                 @endfor
             </div>
         </div>

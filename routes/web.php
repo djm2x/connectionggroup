@@ -49,7 +49,7 @@ Route::fallback(function (string $route) {
     }
 
     // return redirect('');
-    return view("notfound");
+    // return view("notfound");
 });
 
 

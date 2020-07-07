@@ -11,4 +11,8 @@ export class BlogService extends SuperService<Blog> {
   constructor() {
     super('blogs');
   }
+
+  getAll(startIndex, pageSize, sortBy, sortDir, idType) {
+    return this.http.get<{list: Blog[], count: number}>(`${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${idType}`);
+  }
 }

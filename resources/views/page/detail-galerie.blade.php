@@ -40,32 +40,32 @@
 
         </div>
         <div id="carouselExampleCaptions4" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner ">
-            @foreach ($images as $e)
-                <div class="{{$loop->iteration == 1 ? 'carousel-item active' : 'carousel-item'}}" style="height: 60vh;">
-                    <div class="d-block w-100 fallback"  style="height: 60vh;"></div>
-                    <div class="carousel-caption  d-none d-md-block d-flex flex-column justify-content-center align-items-center"  style="height: 60vh;">
-                        <div class="row d-flex justify-content-center align-items-center h-100 p-2">
-                            
-                                <div class="card col-md-12 p-0">
-                                        <img src="{{url('galeries/'.$model->id.'/'.$e)}}" onerror="this.onerror=null;this.src='/images/404.png';"
-                                            class="card-img-top"  style="height: 57vh" alt="{{$e}}">
-                                </div>
-                            
+            <div class="carousel-inner ">
+                @foreach ($images as $e)
+                    <div class="{{$loop->iteration == 1 ? 'carousel-item active' : 'carousel-item'}}" style="height: 60vh;">
+                        <div class="d-block w-100 fallback"  style="height: 60vh;"></div>
+                        <div class="carousel-caption  d-none d-md-block d-flex flex-column justify-content-center align-items-center"  style="height: 60vh;">
+                            <div class="row d-flex justify-content-center align-items-center h-100 p-2">
+
+                                    <div class="card col-md-12 p-0">
+                                            <img src="{{url('blogs/'.$model->id.'/'.$e)}}" onerror="this.onerror=null;this.src='/images/404.png';"
+                                                class="card-img-top"  style="height: 57vh" alt="{{$e}}">
+                                    </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-          <a class="carousel-control-prev" href="#carouselExampleCaptions4" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleCaptions4" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+                @endforeach
+            <a class="carousel-control-prev" href="#carouselExampleCaptions4" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions4" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            </div>
         </div>
-    </div>
     </div>
 </section>
 @stop
