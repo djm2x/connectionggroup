@@ -135,8 +135,8 @@ class BlogController extends SuperController
 
         $list = $q->orderBy('date', 'desc')->skip($startIndex)->take($pageSize)->get();
 
-        // return ['list' => $list, 'count' => $count] ;
-        return compact('list', 'count');
+        return ['list' => $list, 'count' => $count] ;
+        // return compact('list', 'count');
     }
 
     public function page(string $type) // : Collection
@@ -158,8 +158,8 @@ class BlogController extends SuperController
         if ($type == 'activites') {
             $title = "";
             $q->orWhere('type', 'LIKE', "%activités%")
-            ->orWhere('type', 'LIKE', "%Conférence%")
-            ->orWhere('type', 'LIKE', "%Formation%")
+            ->orWhere('type', 'LIKE', "%conf%")
+            ->orWhere('type', 'LIKE', "%formation%")
             ;
         }
         // else if ($type == 'conference') {
@@ -217,6 +217,7 @@ class BlogController extends SuperController
         $count = $q->count();
 
         $q2 = clone ($q);
+
         $years = $q2->select(DB::raw($rawSql))->distinct('year')->orderBy('date', 'desc')->get();
 
         $list = $q->orderBy('date', 'desc')->skip(0)->take(6)->get();

@@ -49,7 +49,7 @@
 
 
                 {{-- <h2>{{ $model->title }}</h2> --}}
-                <p style="font-style: italic; font-size: .9em" class="text-muted mb-5">Le {{date('d-m-Y', strtotime($model->date))}}</p>
+                <p style="font-style: italic; font-size: .9em" class="text-muted mb-5 mt-2">Le {{date('d-m-Y', strtotime($model->date))}}</p>
                 {!! $model->description !!}
             </div>
         </div>
