@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::apiResource('galeries', 'GalerieController');
 
     //blogs
-    Route::get('/blogs/getAll/{startIndex}/{pageSize}/{sortBy}/{sortDir}/{idType}', 'BlogController@getAll');
+    Route::get('/blogs/getAll/{startIndex}/{pageSize}/{sortBy}/{sortDir}/{idType}/{title}', 'BlogController@getAll');
     Route::apiResource('blogs', 'BlogController');
 
     //contacts

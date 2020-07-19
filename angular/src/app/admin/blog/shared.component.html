@@ -5,13 +5,24 @@
   </section>
   <mat-divider></mat-divider>
   <div class="d-flex justify-content-between align-items-center mb-2">
-    <mat-form-field >
-      <mat-label>Type</mat-label>
-      <mat-select [formControl]="idType">
-        <mat-option value="">...</mat-option>
-        <mat-option *ngFor="let e of types | async" [value]="e">{{ e }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="mt-2">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select [formControl]="idType">
+          <mat-option value="">...</mat-option>
+          <mat-option *ngFor="let e of types | async" [value]="e">{{ e }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field appearance="fill" style="width: 400px;">
+        <mat-label>Titre</mat-label>
+        <input matInput [formControl]="title">
+        <button mat-icon-button matSuffix (click)="title.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
 
     <button mat-raised-button color="primary" style="height: 36px;" (click)="add()">
       <mat-icon>add</mat-icon>
@@ -40,7 +51,7 @@
 
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
-          <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef] | date : "dd/MM/yyyy"}}</td>
+          <td mat-cell *matCellDef="let row">{{row.date ? (row.date | date : "dd/MM/yyyy") : 'Date non valide'}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[2].columnDef">

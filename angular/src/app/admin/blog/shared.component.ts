@@ -23,6 +23,7 @@ export class SharedComponent implements OnInit {
   isRateLimitReached = false;
 
   idType = new FormControl('');
+  title = new FormControl('');
   types = this.http.get<string[]>('assets/typeActivite.json');
 
   dataSource = [];
@@ -38,6 +39,7 @@ export class SharedComponent implements OnInit {
     return e;
   });
 
+
   displayedColumns = this.columnDefs.map(e => e.columnDef);
 
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
@@ -45,7 +47,7 @@ export class SharedComponent implements OnInit {
 
   ngOnInit() {
 
-    merge(...[this.sort.sortChange, this.paginator.page, this.update, this.idType.valueChanges]).pipe(startWith(null as any)).subscribe(
+    merge(...[this.sort.sortChange, this.paginator.page, this.update, this.idType.valueChanges, this.title.valueChanges]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
@@ -57,13 +59,14 @@ export class SharedComponent implements OnInit {
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
           this.idType.value === '' ? '*' : this.idType.value,
+          this.title.value === '' ? '*' : this.title.value,
         );
       }
     );
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir, idType) {
-    this.uow.blogs.getAll(startIndex, pageSize, sortBy, sortDir, idType).subscribe(
+  getPage(startIndex, pageSize, sortBy, sortDir, idType, title) {
+    this.uow.blogs.getAll(startIndex, pageSize, sortBy, sortDir, idType, title).subscribe(
       (r: any) => {
         console.log(r);
         this.dataSource = r.list;

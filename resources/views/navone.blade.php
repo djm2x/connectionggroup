@@ -43,33 +43,35 @@
                         <a class="{{ request()->is('article/realisations') ? 'nav-link active' : 'nav-link' }}" href="{{ url('article/realisations') }}">Réalisations</a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="{{ request()->is('blogs/activites') ? 'nav-link active' : 'nav-link' }}" href="{{ url('blogs/activites') }}">Activités</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{{ request()->is('galerie') ? 'nav-link active' : 'nav-link' }}" href="{{ route('galerie') }}">Galerie</a>
-                    </li>
+                    </li> --}}
 
-                    {{-- <li class="nav-item dropdown">
+
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Formation
+                            Activités
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="{{ request()->is('blogs/formationAgadir') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationAgadir') }}">Formation région Agadir</a>
+                            <a class="{{ request()->is('blogs/formation') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formation') }}">Formations</a>
                             <div class="dropdown-divider"></div>
-                            <a class="{{ request()->is('blogs/formationCasablanca') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationCasablanca') }}">Formation région Casablanca</a>
+                            <a class="{{ request()->is('blogs/conference') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/conference') }}">Conférences</a>
                             <div class="dropdown-divider"></div>
-                            <a class="{{ request()->is('blogs/formationFes') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationFes') }}">Formation région Fès</a>
-                            <div class="dropdown-divider"></div>
+                            <a class="{{ request()->is('blogs/divers') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/divers') }}">Divers</a>
+                            {{-- <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/formationMarrakech') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationMarrakech') }}">Formation région Marrakech</a>
                             <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/formationMeknes') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationMeknes') }}">Formation région Meknès</a>
                             <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/formationRabat') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationRabat') }}">Formation région Rabat-Kénitra</a>
                             <div class="dropdown-divider"></div>
-                            <a class="{{ request()->is('blogs/formationTanger') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationTanger') }}">Formation région Tanger</a>
+                            <a class="{{ request()->is('blogs/formationTanger') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationTanger') }}">Formation région Tanger</a> --}}
                         </div>
-                    </li> --}}
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="{{ request()->is('galerie') ? 'nav-link active' : 'nav-link' }}" href="{{ route('galerie') }}">Galerie</a>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

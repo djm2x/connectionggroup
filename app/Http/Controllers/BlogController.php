@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class BlogController extends SuperController
 {
     private $types = [
-        "activites",
+        "divers",
         "agenda",
         "communiques",
         "conference",
@@ -26,12 +26,16 @@ class BlogController extends SuperController
         parent::__construct($model);
     }
 
-    public function getAll(int $startIndex, int $pageSize, string $sortBy, string $sortDir, string $idType) // : Collection
+    public function getAll(int $startIndex, int $pageSize, string $sortBy, string $sortDir, string $idType, string $title) // : Collection
     {
         $q = $this->_context;
-        $b = $idType != '*';
+        // $b = $idType != '*';
         if ($idType != '*') {
             $q = $q->where('type', 'LIKE', "%{$idType}%");
+        }
+
+        if ($title != '*') {
+            $q = $q->where('title', 'LIKE', "%{$title}%");
         }
 
         $list = $q->orderBy($sortBy, $sortDir)
@@ -41,7 +45,7 @@ class BlogController extends SuperController
 
         $count = $this->_context->get()->count();
 
-        return compact('list', 'count', 'idType', 'b');
+        return compact('list', 'count', 'idType');
     }
 
     public function newsTopThree() // : Collection
@@ -71,60 +75,28 @@ class BlogController extends SuperController
         // get blog of one type
         $q = $this->_context->where('type', 'LIKE', "%{$type}%");
 
-        if ($type == 'activites') {
-            $title = "";
-            $q->orWhere('type', 'LIKE', "%activités%");
-        }
-        //
-        else if ($type == 'communiques') {
-            $title = "";
-            $q->orWhere('type', 'LIKE', "%communiqués%");
+        $title = "";
+
+        if ($type == 'divers') {
+            $title = "Divers";
+
+            $q->orWhere('type', 'LIKE', "%divers%")
+            // ->orWhere('type', 'LIKE', "%conf%")
+            // ->orWhere('type', 'LIKE', "%formation%")
+            ;
         }
         //
         else if ($type == 'conference') {
             $title = "Conférence";
             $q->orWhere('type', 'LIKE', "%Conférence%");
-        }
-        //
-        // else if ($type == 'conferenceRegionale') {
-        //     $title = "Conférence régionale";
-        //     $q->orWhere('type', 'LIKE', "%Conférence régionale%");
-        // }
-        //
-        else if ($type == 'formation') {
+        } else if ($type == 'formation') {
             $title = "Formation";
             $q->orWhere('type', 'LIKE', "%Formation%");
         }
-        //
-        // else if ($type == 'formationCasablanca') {
-        //     $title = "Formation région Casablanca";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Casablanca%");
-        // }
-        // //
-        // else if ($type == 'formationFes') {
-        //     $title = "Formation région Fès";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Fès%");
-        // }
-        // //
-        // else if ($type == 'formationMarrakech') {
-        //     $title = "Formation région Marrakech";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Marrakech%");
-        // }
-        // //
-        // else if ($type == 'formationMeknes') {
-        //     $title = "Formation région Meknès";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Meknès%");
-        // }
-        // //
-        // else if ($type == 'formationRabat') {
-        //     $title = "Formation région Rabat-Kénitra";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Rabat-Kénitra%");
-        // }
-        // //
-        // else if ($type == 'formationTanger') {
-        //     $title = "Formation région Tanger";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Tanger%");
-        // }
+        else if ($type == 'communiques') {
+            $title = "communiques";
+            $q->orWhere('type', 'LIKE', "%communiqués%");
+        }
 
         // filter blogs by years
         if ($year != 0) {
@@ -155,61 +127,25 @@ class BlogController extends SuperController
 
         $title = "";
 
-        if ($type == 'activites') {
-            $title = "";
-            $q->orWhere('type', 'LIKE', "%activités%")
-            ->orWhere('type', 'LIKE', "%conf%")
-            ->orWhere('type', 'LIKE', "%formation%")
+        if ($type == 'divers') {
+            $title = "Divers";
+
+            $q->orWhere('type', 'LIKE', "%divers%")
+            // ->orWhere('type', 'LIKE', "%conf%")
+            // ->orWhere('type', 'LIKE', "%formation%")
             ;
         }
-        // else if ($type == 'conference') {
-        //     $title = "Conférence";
-        //     $q->orWhere('type', 'LIKE', "%Conférence nationale%");
-        // } else if ($type == 'formation') {
-        //     $title = "Formation région";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Agadir%");
-        // }
+        else if ($type == 'conference') {
+            $title = "Conférence";
+            $q->orWhere('type', 'LIKE', "%Conférence%");
+        } else if ($type == 'formation') {
+            $title = "Formation";
+            $q->orWhere('type', 'LIKE', "%Formation%");
+        }
         else if ($type == 'communiques') {
             $title = "communiques";
             $q->orWhere('type', 'LIKE', "%communiqués%");
         }
-        //
-        // else if ($type == 'conferenceRegionale') {
-        //     $title = "Conférence régionale";
-        //     $q->orWhere('type', 'LIKE', "%Conférence régionale%");
-        // }
-        //
-        //
-        // else if ($type == 'formationCasablanca') {
-        //     $title = "Formation région Casablanca";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Casablanca%");
-        // }
-        // //
-        // else if ($type == 'formationFes') {
-        //     $title = "Formation région Fès";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Fès%");
-        // }
-        // //
-        // else if ($type == 'formationMarrakech') {
-        //     $title = "Formation région Marrakech";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Marrakech%");
-        // }
-        // //
-        // else if ($type == 'formationMeknes') {
-        //     $title = "Formation région Meknès";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Meknès%");
-        // }
-        // //
-        // else if ($type == 'formationRabat') {
-        //     $title = "Formation région Rabat-Kénitra";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Rabat-Kénitra%");
-        // }
-        // //
-        // else if ($type == 'formationTanger') {
-        //     $title = "Formation région Tanger";
-        //     $q->orWhere('type', 'LIKE', "%Formation région Tanger%");
-        // }
-
 
 
         $rawSql = env('DB_CONNECTION') == 'sqlite' ? "strftime('%Y', date) as year" : 'YEAR(date) as year';
