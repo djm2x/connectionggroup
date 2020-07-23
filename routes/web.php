@@ -21,6 +21,7 @@ Route::get('/blogs/{type}/{id}', 'BlogController@detail');
 
 //galerie
 Route::get('/galerie', 'GalerieController@list')->name('galerie');
+Route::get('/galerie-test', 'GalerieController@test')->name('galerie-test');
 Route::get('/detail-galerie/{id}', 'GalerieController@detail')->name('detail-galerie');
 
 // media

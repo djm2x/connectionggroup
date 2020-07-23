@@ -18,6 +18,19 @@ class GalerieController extends SuperController
         return view('page/galerie', compact('list'));
     }
 
+    public function test()
+    {
+        $model = $this->_context
+            ->where('id', 6)
+            ->first();
+            ;
+
+        $images = explode(";", $model->imageUrl);
+        array_pop($images);
+
+        return view('page/galerie-test', compact('model', 'images'));
+    }
+
     public function detail(int $id)
     {
         // $model = $this->_context->findById($id);
