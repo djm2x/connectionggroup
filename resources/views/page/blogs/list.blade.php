@@ -27,7 +27,7 @@
                 @foreach($list as $e)
                     <div class="row">
                         <div class="col-md-5">
-                            <img src="{{url('blogs/'.substr($e->imageUrl, 0, strpos($e->imageUrl, ";")) )}}"
+                            <img src="{{url('blogs/'.$e->id.'/'.substr($e->imageUrl, 0, strpos($e->imageUrl, ";")) )}}"
                             onerror="this.onerror=null;this.src='/images/404.png';" class="w-100" style="height: 180px;">
                         </div>
                         <div class="col-md-7">
@@ -85,7 +85,7 @@
                 }
 
             } catch (e) {
-                e.response?.data ? console.warn(e.response?.data) : console.warn(e);
+                e.response && e.response.data ? console.warn(e.response.data) : console.warn(e);
             }
         }
 
@@ -100,7 +100,7 @@
                     `
                     <div class="row">
                         <div class="col-md-5">
-                            <img src="${type}/${e.imageUrl?.replace(';', '')}"
+                            <img src="/blogs/${e.id}/${e.imageUrl.substring(0, e.imageUrl.indexOf(';'))}"
                             onerror="this.onerror=null;this.src='/images/404.png';" class="w-100" style="height: 180px;">
                         </div>
                         <div class="col-md-7">
@@ -115,6 +115,11 @@
             });
 
             return html;
+        }
+
+        //
+        function handleImage(imageUrl = '') {
+            return imageUrl.substring(0, imageUrl.indexOf(';'));
         }
     </script>
 @stop
