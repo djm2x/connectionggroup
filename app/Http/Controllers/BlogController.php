@@ -51,10 +51,11 @@ class BlogController extends SuperController
     public function newsTopThree() // : Collection
     {
         $list = $this->_context
-            ->where('type', 'LIKE', "%news%")
+            // ->where('type', 'LIKE', "%news%")
             ->orderBy('date', 'desc')
             ->take(3)
-            ->get();
+            ->get()
+            ;
 
         return ['list' => $list];
     }
@@ -65,7 +66,8 @@ class BlogController extends SuperController
             ->where('type', 'LIKE', "%agenda%")
             ->orderBy('date', 'desc')
             ->take(3)
-            ->get();
+            ->get()
+            ;
 
         return ['list' => $list];
     }

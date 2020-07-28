@@ -158,12 +158,12 @@ export class UploadImageComponent implements OnInit {
     img.src = 'assets/404.jpg';
   }
 
-  setIcon(filaName) {
-    const i = filaName.lastIndexOf('.');
-    const s = filaName.substring(i + 1);
-    // console.log(s);
-    return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
-  }
+  // setIcon(filaName) {
+  //   const i = filaName.lastIndexOf('.');
+  //   const s = filaName.substring(i + 1);
+  //   // console.log(s);
+  //   return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
+  // }
 
 
   removeFromImages(name: string) {
@@ -251,6 +251,7 @@ export class UploadImageComponent implements OnInit {
 
     formData.append('length', `${this.files.length}`);
 
+    // cas for new element added
     if (value.id && !this.folderToSaveInServer.includes('_')) {
       this.folderToSaveInServer = `${this.folderToSaveInServer}_${value.id}`;
     }

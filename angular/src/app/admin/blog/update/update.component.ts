@@ -19,7 +19,7 @@ export class UpdateComponent implements OnInit {
   title = '';
   config = this._config;
 
-  folderToSaveInServer = 'blogs';
+  folderToSaveInServer: string;
 
   imageTo = new Subject();
   imageFrom = new Subject();
@@ -35,8 +35,9 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.o = this.data.model;
     this.title = this.data.title;
-    this.o.date = new Date(this.o.date)
-    console.log(this.o)
+    this.o.date = new Date(this.o.date);
+    this.folderToSaveInServer = this.o.id === 0 ? 'blogs' : `blogs_${this.o.id}`;
+    // console.log(this.o)
     this.createForm();
 
 
@@ -56,12 +57,12 @@ export class UpdateComponent implements OnInit {
     if (o.id === 0) {
       o.id = null;
       this.uow.blogs.post(o).subscribe(r => {
-        this.eventSubmitFromParent.next(true);
+        this.eventSubmitFromParent.next({ id: r.id });
         this.dialogRef.close(o);
       });
     } else {
       this.uow.blogs.put(o.id, o).subscribe(r => {
-        this.eventSubmitFromParent.next(true);
+        this.eventSubmitFromParent.next({ id: o.id });
         this.dialogRef.close(o);
       });
     }

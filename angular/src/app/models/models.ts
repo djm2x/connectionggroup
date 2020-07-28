@@ -74,7 +74,8 @@ export class Blog {
   description = '';
   date = new Date();
   imageUrl = '';
-  type = 'Press';
+  mediaUrl = '';
+  type = '';
   idUser = 0;
   users = new User();
 }

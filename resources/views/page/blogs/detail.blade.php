@@ -28,7 +28,7 @@
                                     <div class="row d-flex justify-content-center align-items-center h-100 p-2">
 
                                             <div class="card col-md-12 p-0">
-                                                    <img src="{{url('blogs/'.$e)}}" onerror="this.onerror=null;this.src='/images/404.png';"
+                                                    <img src="{{url('blogs/'.$model->id.'/'.$e)}}" onerror="this.onerror=null;this.src='/images/404.png';"
                                                         class="card-img-top"  style="height: 35vh" alt="{{$e}}">
                                             </div>
 

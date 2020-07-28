@@ -19,6 +19,7 @@ class CreateBlogsTable extends Migration
             $table->longText('description')->nullable(true);
             $table->dateTime('date')->nullable(true);
             $table->string('imageUrl')->nullable(true);
+            $table->string('mediaUrl')->nullable(true);
 
             $table->string('type');
 
