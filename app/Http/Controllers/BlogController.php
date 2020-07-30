@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class BlogController extends SuperController
@@ -26,6 +27,7 @@ class BlogController extends SuperController
         parent::__construct($model);
     }
 
+    // api
     public function getAll(int $startIndex, int $pageSize, string $sortBy, string $sortDir, string $idType, string $title) // : Collection
     {
         $q = $this->_context;
@@ -72,10 +74,14 @@ class BlogController extends SuperController
         return ['list' => $list];
     }
 
+    //api
     public function pageApi(int $startIndex, int $pageSize, string $type, int $year) // : Collection
     {
         // get blog of one type
-        $q = $this->_context->where('type', 'LIKE', "%{$type}%");
+        $q = $this->_context
+            ->where('type', 'LIKE', "%{$type}%")
+            ->where('date', '<', date("Y/m/d"))
+            ;
 
         $title = "";
 
@@ -120,7 +126,10 @@ class BlogController extends SuperController
         }
 
         $q = $this->_context
-            ->where('type', 'LIKE', "%{$type}%");
+            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('date', '<', date("Y/m/d"))
+            ->whereDate('date', '<=', Carbon::now())
+            ;
 
         if ($type == 'nationales' || $type == 'intrenationales') {
             $list = $q->get();

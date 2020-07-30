@@ -32,6 +32,12 @@
                         </div>
                         <div class="col-md-7">
                         <p style="font-size: 1.2em">{{$e->title}}</p>
+                        <p style="font-style: italic; font-size: .9em" class="text-muted mb-5 mt-2">
+                            Le {{date('d-m-Y', strtotime($e->date))}}
+                            {{-- Le {{$e->date->format('Y-m-d H:i:s')}} --}}
+
+                            
+                        </p>
                             {{-- <p style="font-size: .9em">{{str_replace('&nbsp;',' ',substr(strip_tags($e->description),0,1000))}}</p> --}}
                         </div>
                     </div>

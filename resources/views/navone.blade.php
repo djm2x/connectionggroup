@@ -72,9 +72,9 @@
                     <li class="nav-item">
                         <a class="{{ request()->is('galerie') ? 'nav-link active' : 'nav-link' }}" href="{{ route('galerie') }}">Galerie</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="{{ request()->is('galerie-test') ? 'nav-link active' : 'nav-link' }}" href="{{ route('galerie-test') }}">Galerie-test</a>
-                    </li>
+                    </li> --}}
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
