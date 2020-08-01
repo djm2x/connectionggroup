@@ -35,9 +35,12 @@
     </div> --}}
 
 
-    <div class="container p-0">
-        <div class="row d-flex justify-content-center p-2" style="">
-
+    <div class="container p-0 my-2">
+        <div class="row d-flex p-2 ml-2" style="">
+            <p style="font-size: 1.2em">{{$model->title}}</p>
+            <p style="font-style: italic; font-size: .9em" class="text-muted mt-2">
+                Le {{date('d-m-Y', strtotime($model->date))}} <b>({{$model->type}})</b>
+            </p>
         </div>
         <div id="carouselExampleCaptions4" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner ">

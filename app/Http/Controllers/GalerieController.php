@@ -2,20 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\blog;
 use App\galerie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class GalerieController extends SuperController
 {
-    public function __construct(galerie $model)
+    public function __construct(blog $model, galerie $model2)
     {
         parent::__construct($model);
     }
 
+    // public function list()
+    // {
+    //     $list = $this->_context->orderBy('id', 'desc')->get();
+    //     return view('page/galerie', compact('list'));
+    // }
+
     public function list()
     {
-        $list = $this->_context->orderBy('id', 'desc')->get();
-        return view('page/galerie', compact('list'));
+        $q = $this->_context
+            ->whereDate('date', '<=' , Carbon::today()->toDateString())
+            ->where('imageUrl', '<>', '')
+            ->where('type', 'NOT LIKE', "%nationales%")
+            ;
+
+        $count = $q->count();
+
+        $list = $q->orderBy('date', 'desc')
+                ->get()
+                ;
+
+        return view('page/galerie', compact('list', 'count'));
     }
 
     public function test()

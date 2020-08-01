@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-    Galerie d'images
+    Galerie d'images ({{$count}})
 @stop
 
 @section('content')
