@@ -33,8 +33,8 @@
                             <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/nationales') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/nationales') }}">Sections nationales</a>
                             <div class="dropdown-divider"></div>
-                            {{-- <a class="{{ request()->is('blogs/intrenationales') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/intrenationales') }}">Sections intrenationales</a>
-                            <div class="dropdown-divider"></div> --}}
+                            <a class="{{ request()->is('blogs/intrenationales') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/intrenationales') }}">Sections intrenationales</a>
+                            <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('article/commissions') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('article/commissions') }}">Commissions</a>
                         </div>
                     </li>
@@ -53,11 +53,11 @@
                             Activités
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="{{ request()->is('blogs/formation') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formation') }}">Formations</a>
+                            <a class="{{ request()->is('formation') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formation/0/6/0') }}">Formations</a>
                             <div class="dropdown-divider"></div>
-                            <a class="{{ request()->is('blogs/conference') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/conference') }}">Conférences</a>
+                            <a class="{{ request()->is('conference') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/conference/0/6/0') }}">Conférences</a>
                             <div class="dropdown-divider"></div>
-                            <a class="{{ request()->is('blogs/divers') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/divers') }}">Divers</a>
+                            <a class="{{ request()->is('divers') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/divers/0/6/0') }}">Divers</a>
                             {{-- <div class="dropdown-divider"></div>
                             <a class="{{ request()->is('blogs/formationMarrakech') ? 'dropdown-item active' : 'dropdown-item' }}" href="{{ url('blogs/formationMarrakech') }}">Formation région Marrakech</a>
                             <div class="dropdown-divider"></div>

@@ -33,10 +33,10 @@
                         <div class="col-md-7">
                         <p style="font-size: 1.2em">{{$e->title}}</p>
                         <p style="font-style: italic; font-size: .9em" class="text-muted mb-5 mt-2">
-                            Le {{date('d-m-Y', strtotime($e->date))}}
+                            Le {{date('d-m-Y', strtotime($e->date))}} <b>({{$e->type}})</b>
                             {{-- Le {{$e->date->format('Y-m-d H:i:s')}} --}}
 
-                            
+
                         </p>
                             {{-- <p style="font-size: .9em">{{str_replace('&nbsp;',' ',substr(strip_tags($e->description),0,1000))}}</p> --}}
                         </div>
@@ -61,7 +61,7 @@
 @section('scripts')
     <script>
         const type = {!! json_encode($type) !!};
-
+        console.log(window.location.href)
         get('#year').addEventListener('change', () => {
             console.log(pageIndex, +get('#pageSize').value, type, +get('#year').value)
 
@@ -78,10 +78,11 @@
             get('#blogList').innerHTML = spinner;
 
             try {
+                // handleUrl(type, startIndex, pageSize, +get('#year').value);
                 const r = await axios.get(`/api/blogs/pageApi/${startIndex}/${pageSize}/${type}/${+get('#year').value}`);
                 const list = r.data.list;
 
-                // console.warn(r)
+                console.warn(r.data)
 
                 get('#count').innerHTML = r.data.count;
 
@@ -95,6 +96,19 @@
             }
         }
 
+        //
+        function handleUrl(type = '', startIndex = 0, pageSize = 6, year = 0) {
+
+            var loc = window.location;
+
+            const url = `/blogs/${type}/${startIndex}/${pageSize}/${year}`
+            console.log(`${loc.host}/blogs/${type}/${startIndex}/${pageSize}/${year}`)
+
+            window.history.pushState({ id: "100" },  type, url);
+
+            // window.location.href = `${loc.host}/blogs/${type}/${startIndex}/${pageSize}/${year}`;
+        }
+
         /**
          * @param {Array} data
          * @returns {string}
@@ -106,17 +120,22 @@
                     `
                     <div class="row">
                         <div class="col-md-5">
-                            <img src="/blogs/${e.id}/${e.imageUrl.substring(0, e.imageUrl.indexOf(';'))}"
+                            <img src="/blogs/${e.id}/${e.imageUrl ? e.imageUrl.substring(0, e.imageUrl.indexOf(';')) : ''}"
                             onerror="this.onerror=null;this.src='/images/404.png';" class="w-100" style="height: 180px;">
                         </div>
                         <div class="col-md-7">
                             <p style="font-size: 1.2em">${e.title}</p>
+
+                            <p style="font-style: italic; font-size: .9em" class="text-muted mb-5 mt-2">
+                                Le ${formatDate(e.date)} <b>(${e.type})</b>
+                            </p>
                         </div>
                     </div>
 
                     <div class="d-flex flex-row-reverse mt-2  mb-2">
                         <a href="/blogs/${type}/${e.id}"><span style="font-size: 1.1em;">Continue a Lire</span></a>
                     </div>
+                    <hr>
                 `;
             });
 
@@ -126,6 +145,17 @@
         //
         function handleImage(imageUrl = '') {
             return imageUrl.substring(0, imageUrl.indexOf(';'));
+        }
+
+        function formatDate(d1 = '') {
+            const d = new Date(d1);
+            const f = {
+                day: d.getDate().toString().length === 1 ? `0${d.getDate()}` : d.getDate(),
+                month: d.getMonth() + 1,
+                year: d.getFullYear()
+            }
+
+            return `${f.day}-${f.month}-${f.year}`;
         }
     </script>
 @stop

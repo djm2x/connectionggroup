@@ -7,20 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class BlogController extends SuperController
+class BlogController2 extends SuperController
 {
     private $types = [
-        "nationales",
-
-        "formation",
-        "conference",
         "divers",
         "agenda",
-        "news",
-        "interviews",
         "communiques",
+        "conference",
+        "formation",
+        "interviews",
+        "news",
         "press",
-        // "intrenationales",
+        "intrenationales",
+        "nationales"
     ];
 
     public function __construct(blog $model)
@@ -28,7 +27,7 @@ class BlogController extends SuperController
         parent::__construct($model);
     }
 
-    // for angular
+    // api
     public function getAll(int $startIndex, int $pageSize, string $sortBy, string $sortDir, string $idType, string $title) // : Collection
     {
         $q = $this->_context;
@@ -54,7 +53,7 @@ class BlogController extends SuperController
     public function newsTopThree() // : Collection
     {
         $list = $this->_context
-            ->where('date', '<=', Carbon::today()->toDateString())
+            // ->where('type', 'LIKE', "%news%")
             ->orderBy('date', 'desc')
             ->take(3)
             ->get()
@@ -66,7 +65,7 @@ class BlogController extends SuperController
     public function agendaTopThree() // : Collection
     {
         $list = $this->_context
-            ->where('date', '>', Carbon::today()->toDateString())
+            ->where('type', 'LIKE', "%agenda%")
             ->orderBy('date', 'desc')
             ->take(3)
             ->get()
@@ -75,64 +74,92 @@ class BlogController extends SuperController
         return ['list' => $list];
     }
 
-    // for js inside blade
+    //api
     public function pageApi(int $startIndex, int $pageSize, string $type, int $year) // : Collection
     {
 
-        $type =  $type == 'conference' ? 'Conférence' : $type;
+        $type = $type == 'conference' ? 'Conférence' : $type;
         // get blog of one type
         $q = $this->_context
-            // ->where('type', 'LIKE', "%{$type}%")
-            ->whereRaw(($type == 'news' || $type == 'agenda') ? '1 = 1' : "type like '%{$type}%'")
-            ->whereDate('date', ($type != 'agenda') ? '<=': '>' , Carbon::today()->toDateString())
-            ->where('type', 'NOT LIKE', "%nationales%")
+            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('date', '<', date("Y/m/d"))
             ;
 
-
-
-        // filter blogs by years
         if ($year != 0) {
             $q->whereYear('date', '=', $year);
         }
+
+        // filter blogs by years
+
 
         $count = $q->count();
 
         $list = $q->orderBy('date', 'desc')->skip($startIndex)->take($pageSize)->get();
 
-        return ['list' => $list, 'count' => $count] ;
+        return ['list' => $list, 'count' => $count , 'year' => $year] ;
         // return compact('list', 'count');
     }
 
-    // for server side rendering
-    public function page(string $type) // : Collection
+    public function formation(int $startIndex, int $pageSize, int $year) // : Collection
+    {
+        return $this->shared('formation', $startIndex, $pageSize, $year);
+    }
+
+    public function conference(int $startIndex, int $pageSize, int $year) // : Collection
+    {
+        return $this->shared('conference', $startIndex, $pageSize, $year);
+    }
+
+    public function divers(int $startIndex, int $pageSize, int $year) // : Collection
+    {
+        return $this->shared('divers', $startIndex, $pageSize, $year);
+    }
+
+    private function shared(string $type, int $startIndex, int $pageSize, int $year) // : Collection
     {
         if (!in_array($type, $this->types)/*!view()->exists("page/blogs/{$type}")*/) {
             return view("notfound");
         }
 
-        $type =  $type == 'conference' ? 'Conférence' : $type;
-        $title = ucfirst($type);
-
         $q = $this->_context
-            // ->where('type', 'LIKE', "%{$type}%")
-
-            // ->whereRaw('email = ? or name like ?', [$request->email,"%{$request->name}%"])
-            ->whereRaw(($type == 'news' || $type == 'agenda') ? '1 = 1' : "type like '%{$type}%'")
-            ->whereDate('date', ($type != 'agenda') ? '<=': '>' , Carbon::today()->toDateString())
-            // ->whereRaw('type like ?', ["%{$type}%"])
+            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('date', '<', date("Y/m/d"))
+            // ->whereDate('date', '<=', Carbon::now())
             ;
 
-        if ($type == 'nationales') {
-            return view("page/blogs/{$type}", ['list' => $q->get()]);
+        if ($type == 'nationales' || $type == 'intrenationales') {
+            $list = $q->get();
+            return view("page/blogs/{$type}", compact('list'));
         }
 
-        $q = $q->where('type', 'NOT LIKE', "%nationales%");
+        $title = "";
+
+        if ($type == 'divers') {
+            $title = "Divers";
+
+            $q->orWhere('type', 'LIKE', "%divers%")
+            // ->orWhere('type', 'LIKE', "%conf%")
+            // ->orWhere('type', 'LIKE', "%formation%")
+            ;
+        }
+        else if ($type == 'conference') {
+            $title = "Conférence";
+            $q->orWhere('type', 'LIKE', "%Conférence%");
+        } else if ($type == 'formation') {
+            $title = "Formation";
+            $q->orWhere('type', 'LIKE', "%Formation%");
+        }
+        else if ($type == 'communiques') {
+            $title = "communiques";
+            $q->orWhere('type', 'LIKE', "%communiqués%");
+        }
+
 
         $rawSql = env('DB_CONNECTION') == 'sqlite' ? "strftime('%Y', date) as year" : 'YEAR(date) as year';
 
         $count = $q->count();
 
-        $q2 = clone($q);
+        $q2 = clone ($q);
 
         $years = $q2->select(DB::raw($rawSql))->distinct('year')->orderBy('date', 'desc')->get();
 
