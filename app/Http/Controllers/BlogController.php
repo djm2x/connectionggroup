@@ -142,7 +142,7 @@ class BlogController extends SuperController
 
         // $years = array_unique ($years);
 
-
+        $type =  $type == 'Conférence' ? 'conference' : $type;
 
         return view("page/blogs/list", compact('list', 'type', 'years', 'count', 'title'));
     }

@@ -21,8 +21,8 @@
                 @foreach ($list as $e)
                 <div class="d-flex mb-3">
                     <div class="mr-2" >
-                        <img src="{{url('blogs/'.str_replace(';', '', $e->imageUrl))}}" onerror="this.onerror=null;this.src='/images/404.png';"
-                            style="width:60px" alt="{{$e->title}}">
+                        <img src="{{url('blogs/'.$e->id.'/'.substr($e->imageUrl, 0, strpos($e->imageUrl, ";")) )}}"
+                            onerror="this.onerror=null;this.src='/images/404.png';" style="width:60px; height: 60px;" alt="{{$e->title}}">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         {!! $e->description !!}
